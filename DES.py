@@ -1,5 +1,3 @@
-
-
 # DES Initial permutation table
 IP = [
     58, 50, 42, 34, 26, 18, 10, 2,
@@ -152,42 +150,12 @@ def expand(r):
 
 
 def xor(a, b):
-    '''
-    Make the xor operation between two same length integer.
-
-    Args:
-        a (string) : A string representing an integer in binary (without the 0b).
-        b (string) : A string representing an integer in binary (without the 0b).
-
-    Raises:
-        Exception : If the parameters have different sizes.
-
-    Returns:
-        string : A string representing the xor value of the two arguments in binary (without the 0b).
-    '''
-    if len(a) != len(b):
-        raise Exception('The two parameters must have the same bit size. First was : ' + str(len(a)) + ' bits. Second was : ' + str(len(b)) + ' bits.')
-
     res = bin(int(a, 2) ^ int(b, 2))[2:].zfill(len(a))
     return res
 
 
 def perm(val):
-    '''
-    Permutates the bits of the integer in parameter according to P table (in DES F function).
-
-    Args:
-        val (string) : A string representing the binary value of an 32 bits integer (without the 0b).
-
-    Raises:
-        Exception : If the parameter is not a 32 bits integer.
-    
-    Returns:
-        string : The result of the operation in the binary form (without 0b).
-    '''
-    if len(val) != 32:
-        raise Exception('The parameter must represent a 32 bits integer. Provided represented a ' + str(len(val)) + ' bits integer.')
-
+   
     res = ''
     for bit in P:
         res += val[bit - 1]
@@ -195,21 +163,7 @@ def perm(val):
 
 
 def rev_perm(val):
-    '''
-    Reverse the permutation P in DES F function.
 
-    Args:
-        val (string) : A string representing the binary value of an 32 bits integer (without the 0b).
-    
-    Raises:
-        Exception : If the parameter is not a 32 bits integer.
-    
-    Returns:
-        string : The result of the operation in the binary form (without 0b).
-    '''
-    if len(val) != 32:
-        raise Exception('The parameter must represent a 32 bits integer. Provided represented a ' + str(len(val)) + ' bits integer.')
-    
     res = ''
     for bit in rev_P:
         res += val[bit - 1]
@@ -217,21 +171,6 @@ def rev_perm(val):
 
 
 def initial_perm(cipher):
-    '''
-    Calculates the initial permutation with the IP table.
-
-    Args:
-        cipher (string) : A string representing a 64 bits integer value in binary (without 0b).
-    
-    Raises:
-        Exception : If the parameter is not a 64 bits value.
-
-    Returns:
-        string : The permuted provided string.
-    '''
-    if len(cipher) != 64:
-        raise Exception('The parameter must be a 64 bits value. Provided was a ' + str(len(cipher) - 2) * 4 + ' bits value.')
-    
     res = ''
     for bit in IP:
         res += cipher[bit - 1]

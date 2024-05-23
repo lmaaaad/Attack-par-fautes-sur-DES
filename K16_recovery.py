@@ -57,14 +57,13 @@ def K16_recovery():
     K16 = ''
     for part in possible_keys_part.values():
         K16 += part[0]
+    K16_hex=hex(int(K16, 2))[2:].upper()
+    print("\nRecovered K16 key: \n",K16, "(Binaire) \n" , K16_hex, "(hex)" )    
     return K16
 
 def main():
     # Call the K16 recovery function
-    K16 = K16_recovery()
-    K16_hex=hex(int(K16, 2))[2:].upper()
-    print("\nRecovered K16 key: \n",K16, "(Binaire) \n" , K16_hex, "(hex)" )
-
+    K16_recovery()
 
 if __name__ == "__main__":
     main()
